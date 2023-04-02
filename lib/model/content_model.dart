@@ -3,14 +3,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class ContentModel{
   final String title;
   final String description;
-  final List<String> actors;
+  final List<String> actors;//
   final String director;
   final String maturityLevel;
-  final String type;
+  final String type;//
   final String imdb;
   final String releaseDate;
   final String contentImageUrl;
   final String uid;
+  final String authorId;
 
 
   const ContentModel({
@@ -23,7 +24,8 @@ class ContentModel{
     required this.imdb,
     required this.releaseDate,
     required this.contentImageUrl,
-    required this.uid
+    required this.uid,
+    required this.authorId
   });
 
   Map<String, dynamic> toJson() =>{
@@ -37,6 +39,7 @@ class ContentModel{
     "imdb":imdb,
     "releaseDate":releaseDate,
     "contentImageUrl":contentImageUrl,
+    "authorId":authorId,
   };
 
 
@@ -54,6 +57,7 @@ class ContentModel{
       imdb:snapshot["imdb"],
       releaseDate:snapshot["releaseDate"],
       contentImageUrl:snapshot["contentImageUrl"],
+      authorId:snapshot["authorId"],
     );
   }
 

@@ -4,7 +4,7 @@ import 'package:movieproject/product/constant/icon.dart';
 
 
 class TextFormFieldWidget extends StatefulWidget {
-  const TextFormFieldWidget({super.key, required this.hintText, required this.size, required this.icon, required this.isPasswordField, required this.controller, required this.type, required this.visible, this.autoFillHints});
+  const TextFormFieldWidget({super.key, required this.hintText, required this.size, required this.icon, required this.isPasswordField, required this.controller, required this.type, required this.visible, this.autoFillHints, this.maxLines});
   final String hintText;
   final Size size;
   final IconData icon;
@@ -13,6 +13,7 @@ class TextFormFieldWidget extends StatefulWidget {
   final TextInputType type;
   final bool visible;
   final Iterable<String>? autoFillHints;
+  final int? maxLines;
   @override
   State<TextFormFieldWidget> createState() => _TextFormFieldWidgetState();
 }
@@ -68,6 +69,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
           textAlignVertical:
           widget.isPasswordField ? TextAlignVertical.center : null,
           decoration: _textFormFieldDecoration(),
+          minLines: 1,
         );
   }
 
@@ -105,7 +107,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
     return Material(
       elevation: 5.0,
       child: Container(alignment: Alignment.center,
-      height: widget.size.height*0.06,
+      height:widget.maxLines==null ? widget.size.height*0.06 : null,
       
       decoration: BoxDecoration(
       color: ProjectColor().textFormFieldBackgroundColor,),

@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:movieproject/screens/home_page_view.dart';
 import 'package:movieproject/screens/introduction_page_view.dart';
 import 'package:movieproject/screens/login_page_view.dart';
+import 'package:movieproject/screens/publish_content_page_view.dart';
 import 'package:movieproject/screens/splashScreen_page_view.dart';
 
 Future<void> main() async {
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         
       ),
       debugShowCheckedModeBanner: false,
-      home: LottieAnimation(),
+      home: HomePageView(),
     );
   }
 }
