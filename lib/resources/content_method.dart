@@ -51,4 +51,30 @@ class ContentMethod{
 
 
   }
+
+   Future<String> favoriteContent({required String postId, required String userId,required  List<String> likes} ) async {
+    String res = "Some error occurred";
+
+    try {
+        if (likes.contains(postId)){
+         await _firestore.collection('users').doc(userId).update({
+          'myContentList': FieldValue.arrayRemove([postId])
+        });
+        }else{
+          await _firestore.collection('users').doc(userId).update({
+          'myContentList': FieldValue.arrayUnion([postId])
+        });
+        }
+        // if the likes list contains the user uid, we need to remove it
+        
+      
+      res = 'success';
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
+
+
+
 }
