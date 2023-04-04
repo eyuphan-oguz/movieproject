@@ -97,49 +97,51 @@ String dropdownValue="Aksiyon";
         appBar: AppBar(),
         body: Padding(
           padding: ProjectPadding().mainPadding,
-          child: Column(
-            children: [
-              TextFormFieldWidget(hintText: "İçerik Adı", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _titleController, type: TextInputType.text, visible: false),
-              TextFormFieldWidget(hintText: "Açıklama", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _descriptionController, type: TextInputType.multiline, visible: false,maxLines: 5,),
-              TextFormFieldWidget(hintText: "Yönetmen Adı", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _directorController, type: TextInputType.name, visible: false),
-              TextFormFieldWidget(hintText: "Oyuncu Adı", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _actorController, type: TextInputType.name, visible: false),
-              ButtonWidget(onPressed: (){
-                setState(() {
-                  actors.add(_actorController.text);
-                  _actorController.clear();
-                });
-              }, buttonText: "Oyuncu Ekle", size: size, backgroundColor: Colors.red),
-              //Text(actors.toString(),style: TextStyle(color: Colors.white),),
-              actors.length!=[] ? ListView.builder(
-                itemCount: actors.length,
-                shrinkWrap: true,
-                itemBuilder:(context, index) { 
-                  return ListTile(
-                    leading: Icon(Icons.person,color:Colors.red),
-                    title: Text(actors[index] !=null ? actors[index] : "",style:TextStyle(color: Colors.white)),
-                    trailing: IconButton(onPressed: (){
-                      setState(() {
-                        actors.removeAt(index);                    
-                      });
-                    },icon: Icon(Icons.remove,color: Colors.red,),),
-                  );
-                },
-              ):Container(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text("Tur : ",style: TextStyle(color: Colors.white),),
-                  CustomDropdownMenu(),
-                ],
-              ),
-              TextFormFieldWidget(hintText: "Yaş Sınırı", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _maturityLevelController, type: TextInputType.number, visible: false),
-              TextFormFieldWidget(hintText: "Imdb Puanı", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _imdbController, type: TextInputType.number, visible: false),
-              TextFormFieldWidget(hintText: "Yayın Tarihi", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _releaseDateController, type: TextInputType.datetime, visible: false),
-              TextFormFieldWidget(hintText: "Poster URL", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _contentImageUrlController, type: TextInputType.url, visible: false),
-              
-             !_isLoading ? ButtonWidget(onPressed: publishContent, buttonText: "İçeriği Paylaş", size: size, backgroundColor: Colors.red):
-             ButtonWidget(onPressed: (){}, buttonText: "Lütfen Bekleyin", size: size, backgroundColor: Colors.red)
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextFormFieldWidget(hintText: "İçerik Adı", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _titleController, type: TextInputType.text, visible: false),
+                TextFormFieldWidget(hintText: "Açıklama", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _descriptionController, type: TextInputType.multiline, visible: false,maxLines: 5,),
+                TextFormFieldWidget(hintText: "Yönetmen Adı", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _directorController, type: TextInputType.name, visible: false),
+                TextFormFieldWidget(hintText: "Oyuncu Adı", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _actorController, type: TextInputType.name, visible: false),
+                ButtonWidget(onPressed: (){
+                  setState(() {
+                    actors.add(_actorController.text);
+                    _actorController.clear();
+                  });
+                }, buttonText: "Oyuncu Ekle", size: size, backgroundColor: Colors.red),
+                //Text(actors.toString(),style: TextStyle(color: Colors.white),),
+                actors.length!=[] ? ListView.builder(
+                  itemCount: actors.length,
+                  shrinkWrap: true,
+                  itemBuilder:(context, index) { 
+                    return ListTile(
+                      leading: Icon(Icons.person,color:Colors.red),
+                      title: Text(actors[index] !=null ? actors[index] : "",style:TextStyle(color: Colors.white)),
+                      trailing: IconButton(onPressed: (){
+                        setState(() {
+                          actors.removeAt(index);                    
+                        });
+                      },icon: Icon(Icons.remove,color: Colors.red,),),
+                    );
+                  },
+                ):Container(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text("Tur : ",style: TextStyle(color: Colors.white),),
+                    CustomDropdownMenu(),
+                  ],
+                ),
+                TextFormFieldWidget(hintText: "Yaş Sınırı", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _maturityLevelController, type: TextInputType.number, visible: false),
+                TextFormFieldWidget(hintText: "Imdb Puanı", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _imdbController, type: TextInputType.number, visible: false),
+                TextFormFieldWidget(hintText: "Yayın Tarihi", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _releaseDateController, type: TextInputType.datetime, visible: false),
+                TextFormFieldWidget(hintText: "Poster URL", size: size, icon: Icons.abc_outlined, isPasswordField: false, controller: _contentImageUrlController, type: TextInputType.url, visible: false),
+                
+               !_isLoading ? ButtonWidget(onPressed: publishContent, buttonText: "İçeriği Paylaş", size: size, backgroundColor: Colors.red):
+               ButtonWidget(onPressed: (){}, buttonText: "Lütfen Bekleyin", size: size, backgroundColor: Colors.red)
+              ],
+            ),
           ),
         ),
       ),
