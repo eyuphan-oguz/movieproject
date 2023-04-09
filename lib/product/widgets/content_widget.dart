@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movieproject/core/widgets/button_widget.dart';
+import 'package:movieproject/product/constant/colors.dart';
 import 'package:movieproject/product/constant/icon.dart';
+import 'package:movieproject/product/constant/padding.dart';
 import 'package:movieproject/product/utils/utils.dart';
 import 'package:movieproject/product/widgets/showModalBottomSheet_text_widget.dart';
 import 'package:movieproject/resources/content_method.dart';
@@ -28,10 +30,10 @@ class _ContentWidgetState extends State<ContentWidget> {
         Container(
           width: widget.size.width * 1,
           height: widget.size.height * 0.6,
-          color: Colors.black.withOpacity(0.9),
+          color: ProjectColor().showModalBottomSheetBackgroundColor,
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+              padding: ProjectPadding().showModalBottomSheetPadding,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -58,31 +60,18 @@ class _ContentWidgetState extends State<ContentWidget> {
                         children: [
                           _showModalBottomSheetTitle(title: "Release Date"),
                           ShowModalBottomSheetTextWidget(text: widget.snapshot.data!.docs[widget.index]["releaseDate"],),
-                          Text(widget.snapshot.data!.docs[widget.index]["releaseDate"],
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(color: Colors.white)),
                         ],
                       ),
                       Column(
                         children: [
                           _showModalBottomSheetTitle(title: "Type"),
-                          Text(widget.snapshot.data!.docs[widget.index]["type"],
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(color: Colors.white)),
+                          ShowModalBottomSheetTextWidget(text: widget.snapshot.data!.docs[widget.index]["type"],),
                         ],
                       ),
                       Column(
                         children: [
                           _showModalBottomSheetTitle(title: "IMDB"),
-                          Text(widget.snapshot.data!.docs[widget.index]["imdb"],
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(color: Colors.white)),
+                          ShowModalBottomSheetTextWidget(text: widget.snapshot.data!.docs[widget.index]["imdb"],),
                         ],
                       )
                     ],
@@ -156,6 +145,8 @@ class _ContentWidgetState extends State<ContentWidget> {
       ],
     );
   }
+
+
     ShapeBorder _showModalBottomSheetShapeBorder(){
     return const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(

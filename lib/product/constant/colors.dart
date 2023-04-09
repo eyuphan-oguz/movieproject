@@ -9,5 +9,6 @@ class ProjectColor{
   final Color notSelectedTextFormFieldColor=Color(0xFFb6b6b6);
   final Color textFormFieldBackgroundColor=Color(0xFF333333);
   final Color textFormFieldHintTextColor=Color(0xFFb6b6b6);
+  final Color showModalBottomSheetBackgroundColor=Colors.black.withOpacity(0.9);
 
 }
