@@ -29,18 +29,23 @@ class _RouterPageViewState extends State<RouterPageView> {
 
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black,
         onTap: onTabTapped,
         currentIndex: _currentIndex,
-        selectedItemColor: Color(0xFF4CA6A8),
-        selectedIconTheme: IconThemeData(color: Color(0xFF4CA6A8)),
+        selectedItemColor: Colors.red,
+        unselectedItemColor: Colors.white,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home,),
             label: 'Ana Sayfa',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.library_add_check_rounded),
             label: 'İlan / Başvuru',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.watch_later),
+            label: 'Daha Sonra İzle',
           ),
 
         ],

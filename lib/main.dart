@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         
       ),
       debugShowCheckedModeBanner: false,
-      home: HomePageView(),
+      home: RouterPageView(),
     );
   }
 }
