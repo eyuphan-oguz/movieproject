@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movieproject/screens/content_page_view.dart';
 import 'package:movieproject/screens/home_page_view.dart';
 import 'package:movieproject/screens/publish_content_page_view.dart';
 
@@ -13,7 +14,7 @@ class RouterPageView extends StatefulWidget {
 class _RouterPageViewState extends State<RouterPageView> {
   int _currentIndex = 0;
 
-  final List<Widget> _children = [HomePageView(),PublishContentPageView()];
+  final List<Widget> _children = [HomePageView(),PublishContentPageView(),ContentPageView()];
 
   void onTabTapped(int index) {
     setState(() {
