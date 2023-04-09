@@ -10,5 +10,9 @@ class ProjectColor{
   final Color textFormFieldBackgroundColor=Color(0xFF333333);
   final Color textFormFieldHintTextColor=Color(0xFFb6b6b6);
   final Color showModalBottomSheetBackgroundColor=Colors.black.withOpacity(0.9);
+  final Color homePageAppbarColor=Colors.black;
+  final Color showModalBottomSheetTitleColor=Colors.white;
+  final Color showModalBottomSheetTextColor=Colors.white;
+  final Color textColor=Colors.white;
 
 }

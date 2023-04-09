@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movieproject/product/constant/colors.dart';
 
 
 class ShowModalBottomSheetTextWidget extends StatelessWidget {
@@ -8,9 +9,13 @@ class ShowModalBottomSheetTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text,
-       style: Theme.of(context)
+       style: textStyle(context));
+  }
+
+  TextStyle textStyle (context){
+    return Theme.of(context)
        .textTheme
        .titleMedium!
-       .copyWith(color: Colors.white));
+       .copyWith(color: ProjectColor().showModalBottomSheetTextColor);
   }
 }

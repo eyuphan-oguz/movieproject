@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:lottie/lottie.dart';
 import 'package:movieproject/core/widgets/button_widget.dart';
+import 'package:movieproject/product/constant/colors.dart';
 import 'package:movieproject/product/constant/padding.dart';
 import 'package:movieproject/product/utils/utils.dart';
 import 'package:movieproject/product/widgets/content_widget.dart';
@@ -67,7 +68,7 @@ List<String> contentList = [];
           
         ],
         centerTitle: false,
-          backgroundColor: Colors.black,
+          backgroundColor: ProjectColor().homePageAppbarColor,
           title: Text("N",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontSize: 25),),
         ),
       body: Padding(
