@@ -2,8 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movieproject/core/widgets/button_widget.dart';
+import 'package:movieproject/product/constant/icon.dart';
 import 'package:movieproject/product/utils/utils.dart';
 import 'package:movieproject/resources/content_method.dart';
+
+import 'circle_maturity_level_widget.dart';
 
 class ContentWidget extends StatefulWidget {
   const ContentWidget({super.key, required this.size, required this.snapshot, required this.index, required this.favoriteContent});
@@ -37,16 +40,10 @@ class _ContentWidgetState extends State<ContentWidget> {
                       IconButton(
                           onPressed: () {},
                           icon: Icon(
-                            Icons.close_rounded,
+                            ProjectIcon().deleteIcon,
                             color: Colors.white,
                           )),
-                      CircleAvatar(
-                        backgroundColor: Colors.red,
-                        radius: 25,
-                        child: Text('${widget.snapshot.data!.docs[widget.index]["maturityLevel"]}+',
-                            style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                                color: Colors.white, fontWeight: FontWeight.w900)),
-                      )
+                      CircleMaturityLevel(age:widget.snapshot.data!.docs[widget.index]["maturityLevel"] ,)
                     ],
                   ),
                   Text(widget.snapshot.data!.docs[widget.index]["title"],
