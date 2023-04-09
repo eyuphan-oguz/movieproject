@@ -17,13 +17,18 @@ class _MyContentPageViewState extends State<MyContentPageView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection("users").doc(_auth.currentUser!.uid).snapshots(),
-        builder: (BuildContext context, AsyncSnapshot snapshot){
+        stream: FirebaseFirestore.instance
+            .collection('users')
+            .doc(_auth.currentUser!.uid) // oturum açmış kullanıcının uid'si
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          
           if (!snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(color: Colors.black,),
             );
           }
+
           print(snapshot.data.data());
           print(snapshot.data.data()["myContentList"]);
 
@@ -33,7 +38,7 @@ class _MyContentPageViewState extends State<MyContentPageView> {
             itemBuilder: (context, index) {
               return StreamBuilder(
                 stream: FirebaseFirestore.instance
-                    .collection('Advertisement')
+                    .collection('content')
                     .doc(myPostList[index]) // myPostList içindeki ilan id'si
                     .snapshots(),
                 builder: (context, snapshot) {
@@ -43,12 +48,12 @@ class _MyContentPageViewState extends State<MyContentPageView> {
                   }
                   DocumentSnapshot advertisement = snapshot.data!;
                   print("simdi bura calisti");
-                  
+                  print(advertisement['title']);
                   
                   return ListTile(
-                    title: Text(advertisement.toString()),
-                    subtitle: Text(advertisement.toString()),
-                    trailing: Text(advertisement.toString()),
+                    title: Text(advertisement['title'],style: TextStyle(color: Colors.white),),
+                    subtitle: Text(advertisement['description'],style: TextStyle(color: Colors.white)),
+                    trailing: Text(advertisement['type'],style: TextStyle(color: Colors.white)),
                     leading: IconButton(icon: Icon(Icons.remove,),onPressed: ()async{
                     },),
                   );
