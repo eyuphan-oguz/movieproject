@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CircleMaturityLevel extends StatelessWidget {
-  const CircleMaturityLevel({super.key, required this.age});
+class CircleMaturityLevelWidget extends StatelessWidget {
+  const CircleMaturityLevelWidget({super.key, required this.age});
   final String age; 
 
   @override

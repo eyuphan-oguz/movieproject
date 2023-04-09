@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:movieproject/core/widgets/button_widget.dart';
 import 'package:movieproject/product/constant/icon.dart';
 import 'package:movieproject/product/utils/utils.dart';
+import 'package:movieproject/product/widgets/showModalBottomSheet_text_widget.dart';
 import 'package:movieproject/resources/content_method.dart';
 
 import 'circle_maturity_level_widget.dart';
@@ -43,7 +44,7 @@ class _ContentWidgetState extends State<ContentWidget> {
                             ProjectIcon().deleteIcon,
                             color: Colors.white,
                           )),
-                      CircleMaturityLevel(age:widget.snapshot.data!.docs[widget.index]["maturityLevel"] ,)
+                      CircleMaturityLevelWidget(age:widget.snapshot.data!.docs[widget.index]["maturityLevel"] ,)
                     ],
                   ),
                   Text(widget.snapshot.data!.docs[widget.index]["title"],
@@ -56,6 +57,7 @@ class _ContentWidgetState extends State<ContentWidget> {
                       Column(
                         children: [
                           _showModalBottomSheetTitle(title: "Release Date"),
+                          ShowModalBottomSheetTextWidget(text: widget.snapshot.data!.docs[widget.index]["releaseDate"],),
                           Text(widget.snapshot.data!.docs[widget.index]["releaseDate"],
                               style: Theme.of(context)
                                   .textTheme
