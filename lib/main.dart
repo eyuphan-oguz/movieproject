@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:movieproject/product/widgets/watch_later_content_widget.dart';
 import 'package:movieproject/screens/content_page_view.dart';
 import 'package:movieproject/screens/home_page_view.dart';
 import 'package:movieproject/screens/introduction_page_view.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         
       ),
       debugShowCheckedModeBanner: false,
-      home: RouterPageView(),
+      home: MoviesPage(),
     );
   }
 }
