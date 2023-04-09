@@ -41,7 +41,7 @@ class _LoginPageViewState extends State<LoginPageView> {
       // navigate to the home screen
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const LottieAnimation()
+          builder: (context) => const SplashScreenPageView()
         ),
       );
     } else {

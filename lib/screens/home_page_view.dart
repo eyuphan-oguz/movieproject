@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:lottie/lottie.dart';
 import 'package:movieproject/core/widgets/button_widget.dart';
 import 'package:movieproject/product/constant/padding.dart';
 import 'package:movieproject/product/utils/utils.dart';
@@ -267,6 +268,19 @@ List<String> contentList = [];
                   ButtonWidget(
                       onPressed: () async{
                         if(FirebaseAuth.instance.currentUser==null){
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  backgroundColor: Colors.transparent,
+                                  title: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.cancel,color: Colors.red,size: 50,),
+                                      Text("Lütfen oturum açınız.",style: TextStyle(color: Colors.white),)
+                                    ],
+                                  ),);}
+                          );
                           showSnackBar(context, "Lütfen oturum açınız.");
                         }else{
                           await ContentMethod().favoriteContent(postId: snapshot.data!.docs[index]["uid"], userId: FirebaseAuth.instance.currentUser!.uid, likes: favoriteContent);

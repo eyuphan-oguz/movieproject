@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 
-class LottieAnimation extends StatefulWidget {
-  const LottieAnimation({Key? key}) : super(key: key);
+class SplashScreenPageView extends StatefulWidget {
+  const SplashScreenPageView({Key? key}) : super(key: key);
 
   @override
-  State<LottieAnimation> createState() => _LottieAnimationState();
+  State<SplashScreenPageView> createState() => _SplashScreenPageViewState();
 }
 
-class _LottieAnimationState extends State<LottieAnimation> {
+class _SplashScreenPageViewState extends State<SplashScreenPageView> {
   
 
 

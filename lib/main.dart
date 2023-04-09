@@ -6,10 +6,12 @@ import 'package:movieproject/screens/login_page_view.dart';
 import 'package:movieproject/screens/publish_content_page_view.dart';
 import 'package:movieproject/screens/router_page_view.dart';
 import 'package:movieproject/screens/splashScreen_page_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
