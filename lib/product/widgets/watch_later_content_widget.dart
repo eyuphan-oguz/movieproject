@@ -79,6 +79,7 @@ List<DocumentSnapshot> contentDocumentList=[];
   Widget build(BuildContext context) {
     setState(() {
       print(_current);
+      contentDocumentList;
     });
     return Scaffold(
       body: Container( 
@@ -86,8 +87,8 @@ List<DocumentSnapshot> contentDocumentList=[];
         child: Stack(
           alignment: Alignment.center,
           children: [
-            if (contentDocumentList.length > 0) 
-            Image.network(contentDocumentList[_current]["contentImageUrl"], fit: BoxFit.cover),           
+
+           contentDocumentList.length > 0 ? Image.network(contentDocumentList[_current == 0? _current :_current-1]["contentImageUrl"], fit: BoxFit.cover) : Container(),           
             Positioned(
               top: 0,
               left: 0,
@@ -184,7 +185,7 @@ List<DocumentSnapshot> contentDocumentList=[];
             ,Positioned(bottom: 30, child: IconButton(
               onPressed: ()async{
                 setState(() {
-                  contentDocumentList.removeAt(_current);
+                  _current!= 0 ? contentDocumentList.removeAt(_current) :contentDocumentList.removeAt(0) ;
                   print(_selectedContentId);
                 //print(favoriteContentList[_current]);
                 });

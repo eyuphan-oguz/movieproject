@@ -42,12 +42,12 @@ class _RouterPageViewState extends State<RouterPageView> {
             label: 'Ana Sayfa',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.library_add_check_rounded),
-            label: 'İlan / Başvuru',
+            icon: Icon(Icons.ios_share),
+            label: 'İçerik Paylaş',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.watch_later),
-            label: 'Daha Sonra İzle',
+            icon: Icon(Icons.add),
+            label: 'Listem',
           ),
 
         ],

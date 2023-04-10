@@ -113,6 +113,9 @@ List<String> contentList = [];
                       shrinkWrap: true,
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (BuildContext context, int index) {
+                        if(snapshot.data!.docs[index]["type"]=="Aksiyon"){
+                          print(snapshot.data!.docs[index]["title"]);
+                        }
                         return Container(
                             color: Colors.transparent,
                             width: size.width*0.25,
