@@ -3,6 +3,8 @@ import 'package:movieproject/screens/content_page_view.dart';
 import 'package:movieproject/screens/home_page_view.dart';
 import 'package:movieproject/screens/publish_content_page_view.dart';
 
+import '../product/widgets/watch_later_content_widget.dart';
+
 
 class RouterPageView extends StatefulWidget {
   const RouterPageView({Key? key}) : super(key: key);
@@ -14,7 +16,7 @@ class RouterPageView extends StatefulWidget {
 class _RouterPageViewState extends State<RouterPageView> {
   int _currentIndex = 0;
 
-  final List<Widget> _children = [HomePageView(),PublishContentPageView(),ContentPageView()];
+  final List<Widget> _children = [HomePageView(),PublishContentPageView(),MoviesPage()];
 
   void onTabTapped(int index) {
     setState(() {

@@ -2,7 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:movieproject/model/content_model.dart';
+import 'package:movieproject/product/constant/icon.dart';
+import 'package:movieproject/resources/content_method.dart';
 
 class MoviesPage extends StatefulWidget {
   const MoviesPage({ Key? key }) : super(key: key);
@@ -14,23 +17,10 @@ class MoviesPage extends StatefulWidget {
 class _MoviesPageState extends State<MoviesPage> {
   CarouselController _carouselController = new CarouselController();
   int _current = 0;
+  late String _selectedContentId;
 
   List<dynamic> _movies = [
-    {
-      'title': 'Black Widow',
-      'image': 'https://www.moviepostersgallery.com/wp-content/uploads/2020/08/Blackwidow2.jpg',
-      'description': 'Black Widow'
-    },
-    {
-      'title': 'The Suicide Squad',
-      'image': 'https://static.wikia.nocookie.net/headhuntersholosuite/images/7/77/Suicide_Squad%2C_The.jpg/revision/latest?cb=20210807172814',
-      'description': 'The Suicide Squad'
-    },
-    {
-      'title': 'Godzilla Vs Kong',
-      'image': 'https://pbs.twimg.com/media/EwTsO9CVcAUxoMM?format=jpg&name=large',
-      'description': 'Godzilla Vs Kong'
-    }
+
   ];
 
 List<String> favoriteContentList = [];
@@ -52,6 +42,7 @@ List<DocumentSnapshot> contentDocumentList=[];
 
       for(int i = 0 ; i<favoriteContent.length; i++){
         setState(() {
+          
           getContentById(favoriteContent[i]);
         });
       }
@@ -68,8 +59,10 @@ List<DocumentSnapshot> contentDocumentList=[];
     final collectionRef = FirebaseFirestore.instance.collection('content');
     final doc = await collectionRef.doc(id).get();
     setState(() {
+      
       contentModelList = doc.exists ? doc : null;
       contentDocumentList.add(contentModelList!);
+      _selectedContentId=contentDocumentList[0]["uid"];
     });
   }
 
@@ -85,21 +78,16 @@ List<DocumentSnapshot> contentDocumentList=[];
   @override
   Widget build(BuildContext context) {
     setState(() {
-      print(favoriteContentList);
-      //print(contentDocumentList[_current]["title"]); 
-
+      print(_current);
     });
     return Scaffold(
       body: Container( 
         height: MediaQuery.of(context).size.height,
         child: Stack(
+          alignment: Alignment.center,
           children: [
             if (contentDocumentList.length > 0) 
-            Image.network(contentDocumentList[_current]["contentImageUrl"], fit: BoxFit.cover),
-              
-              
-
-           // Image.network(contentDocumentList[_current]["contentImageUrl"], fit: BoxFit.cover),
+            Image.network(contentDocumentList[_current]["contentImageUrl"], fit: BoxFit.cover),           
             Positioned(
               top: 0,
               left: 0,
@@ -112,10 +100,10 @@ List<DocumentSnapshot> contentDocumentList=[];
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
-                      Colors.grey.shade50.withOpacity(1),
-                      Colors.grey.shade50.withOpacity(1),
-                      Colors.grey.shade50.withOpacity(1),
-                      Colors.grey.shade50.withOpacity(1),
+                      Colors.black,
+                      Colors.black,
+                      Colors.black,
+                      Colors.black,
                       Colors.grey.shade50.withOpacity(0.0),
                       Colors.grey.shade50.withOpacity(0.0),
                       Colors.grey.shade50.withOpacity(0.0),
@@ -138,6 +126,7 @@ List<DocumentSnapshot> contentDocumentList=[];
                   onPageChanged: (index, reason) {
                     setState(() {
                       _current = index;
+                      _selectedContentId=contentDocumentList[_current]["uid"];
                     });
                   },
                 ),
@@ -182,55 +171,6 @@ List<DocumentSnapshot> contentDocumentList=[];
                                 ),
                               ),
                               SizedBox(height: 20),
-                              AnimatedOpacity(
-                                duration: Duration(milliseconds: 500),
-                                opacity: _current == _movies.indexOf(movie) ? 1.0 : 0.0,
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        child: Row(
-                                          children: [
-                                            Icon(Icons.star, color: Colors.yellow, size: 20,),
-                                            SizedBox(width: 5),
-                                            Text('4.5', style: TextStyle(
-                                              fontSize: 14.0,
-                                              color: Colors.grey.shade600
-                                            ),)
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        child: Row(
-                                          children: [
-                                            Icon(Icons.access_time, color: Colors.grey.shade600, size: 20,),
-                                            SizedBox(width: 5),
-                                            Text('2h', style: TextStyle(
-                                              fontSize: 14.0,
-                                              color: Colors.grey.shade600
-                                            ),)
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        width: MediaQuery.of(context).size.width * 0.2,
-                                        child: Row(
-                                          children: [
-                                            Icon(Icons.play_circle_filled, color: Colors.grey.shade600, size: 20,),
-                                            SizedBox(width: 5),
-                                            Text('Watch', style: TextStyle(
-                                              fontSize: 14.0,
-                                              color: Colors.grey.shade600
-                                            ),)
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
                             ],
                           ),
                         )
@@ -240,6 +180,17 @@ List<DocumentSnapshot> contentDocumentList=[];
                 }).toList(),
               ),
             )
+          
+            ,Positioned(bottom: 30, child: IconButton(
+              onPressed: ()async{
+                setState(() {
+                  contentDocumentList.removeAt(_current);
+                  print(_selectedContentId);
+                //print(favoriteContentList[_current]);
+                });
+                await ContentMethod().favoriteContent(postId: _selectedContentId, userId: FirebaseAuth.instance.currentUser!.uid, likes: favoriteContentList);
+              },
+              icon: Icon(ProjectIcon().deleteIcon,color: Colors.red,size: 50,)))
           ],
         ),
       ),
