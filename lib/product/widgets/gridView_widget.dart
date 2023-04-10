@@ -10,6 +10,6 @@ class GridViewWidget extends StatefulWidget {
 class _GridViewWidgetState extends State<GridViewWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold();
   }
 }
