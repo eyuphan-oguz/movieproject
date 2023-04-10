@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:movieproject/product/constant/category.dart';
 import 'package:movieproject/product/constant/icon.dart';
+import 'package:movieproject/screens/selected_category_page_view.dart';
 
 
 class CategoryMenu extends StatefulWidget {
@@ -41,6 +42,8 @@ class _CategoryMenuState extends State<CategoryMenu> {
                    return ListTile(
                 title: Text(categoryList[index],style: TextStyle(color: Colors.white60),),
                 onTap: () {
+                
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SelectedCategoryPageView(selectedType:categoryList[index], size: widget.size, )));
                   print(categoryList[index]);
                 },
                    );
