@@ -45,6 +45,7 @@ class _RouterPageViewState extends State<RouterPageView> {
             icon: Icon(Icons.ios_share),
             label: 'İçerik Paylaş',
           ),
+        
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: 'Listem',

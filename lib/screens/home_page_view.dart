@@ -12,6 +12,8 @@ import 'package:movieproject/product/utils/utils.dart';
 import 'package:movieproject/product/widgets/content_widget.dart';
 import 'package:movieproject/resources/content_method.dart';
 
+import '../product/widgets/category_menu_widget.dart';
+
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key});
 
@@ -54,17 +56,13 @@ List<String> contentList = [];
       appBar:  AppBar(
         actions: [
           IconButton(onPressed: (){
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  content: TextFormField(
-                    controller: TextEditingController(),
-                    decoration: InputDecoration(
-                      hintText: 'Search...',
-                    ),
-                  ),);}
-            );},icon: Icon(Icons.search),)
+             showModalBottomSheet<void>(
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+            context: context,
+            builder: (BuildContext context) {
+              return CategoryMenu(size: size); });
+            },icon: Icon(Icons.search),)
           
         ],
         centerTitle: false,
@@ -89,6 +87,7 @@ List<String> contentList = [];
               physics: ScrollPhysics(),
               child: Column(
                 children: [
+                  
                   Container(                 
                     decoration: BoxDecoration(
                     color: Colors.white,

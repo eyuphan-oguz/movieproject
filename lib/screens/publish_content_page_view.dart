@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movieproject/core/widgets/button_widget.dart';
+import 'package:movieproject/product/constant/category.dart';
 import 'package:movieproject/product/constant/padding.dart';
 import 'package:movieproject/product/utils/utils.dart';
 import 'package:movieproject/product/widgets/textformfield_widget.dart';
@@ -24,28 +25,7 @@ TextEditingController _contentImageUrlController=TextEditingController();
 bool _isLoading = false;
 List<String>actors=[];
 class _PublishContentPageViewState extends State<PublishContentPageView> {
-List<String> items=[
-  "Aksiyon",
-  "Anime",
-  "Belgeseller",
-  "Bilim Kurgu",
-  "Çocuk ve Aile",
-  "Dramalar",
-  "Dünya Ayı",
-  "Eleştirmenlerden Tam Not Alanlar",
-  "Fantastik",
-  "Gerilimler",
-  "Gişe Rekortmenleri",
-  "Komediler",
-  "Korku",
-  "Müzik ve Müzikaller",
-  "Reality Programları ve Talk Şovlar",
-  "Romantizm",
-  "Stand-Up",
-  "Türk Yapımları",
-  "Sesli Betimleme"
 
-];
 String dropdownValue="Aksiyon";
 
 
@@ -151,7 +131,7 @@ String dropdownValue="Aksiyon";
   Widget CustomDropdownMenu(){
     return DropdownButton(
                 icon: Icon(Icons.arrow_drop_down_sharp),
-                items: items.map<DropdownMenuItem<String>>(
+                items: categoryList.map<DropdownMenuItem<String>>(
                 (String value){
                   return DropdownMenuItem<String>(
                     value: value,
