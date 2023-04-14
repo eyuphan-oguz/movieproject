@@ -88,7 +88,7 @@ List<DocumentSnapshot> contentDocumentList=[];
           alignment: Alignment.center,
           children: [
 
-           contentDocumentList.length > 0 ? Image.network(contentDocumentList[_current == 0? _current :_current-1]["contentImageUrl"], fit: BoxFit.cover) : Container(),           
+           contentDocumentList.length > 0 ? Image.network(contentDocumentList[_current ]["contentImageUrl"], fit: BoxFit.cover) : Container(),           
             Positioned(
               top: 0,
               left: 0,
@@ -128,6 +128,7 @@ List<DocumentSnapshot> contentDocumentList=[];
                     setState(() {
                       _current = index;
                       _selectedContentId=contentDocumentList[_current]["uid"];
+                      _current;
                     });
                   },
                 ),
@@ -187,6 +188,7 @@ List<DocumentSnapshot> contentDocumentList=[];
                 setState(() {
                   _current!= 0 ? contentDocumentList.removeAt(_current) :contentDocumentList.removeAt(0) ;
                   print(_selectedContentId);
+                  _current;
                 //print(favoriteContentList[_current]);
                 });
                 await ContentMethod().favoriteContent(postId: _selectedContentId, userId: FirebaseAuth.instance.currentUser!.uid, likes: favoriteContentList);

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:movieproject/product/constant/category.dart';
 import 'package:movieproject/product/constant/icon.dart';
+import 'package:movieproject/product/widgets/gridView_widget.dart';
 import 'package:movieproject/screens/selected_category_page_view.dart';
 
 
@@ -43,7 +44,7 @@ class _CategoryMenuState extends State<CategoryMenu> {
                 title: Text(categoryList[index],style: TextStyle(color: Colors.white60),),
                 onTap: () {
                 
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SelectedCategoryPageView(selectedType:categoryList[index], size: widget.size, )));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>GridViewWidget(selectedType:categoryList[index], size: widget.size, )));
                   print(categoryList[index]);
                 },
                    );
